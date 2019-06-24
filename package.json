@@ -1,6 +1,6 @@
 {
-  "name": "json-storage",
-  "version": "0.1.0",
+  "name": "@zbm1/json-storage",
+  "version": "0.1.1",
   "description": "localStorage and sessionStorage of json data",
   "main": "index.js",
   "scripts": {
