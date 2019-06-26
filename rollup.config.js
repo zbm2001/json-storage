@@ -19,9 +19,11 @@ const name = filename.replace(/-([a-z])/g, (m, $1) => $1.toUpperCase())
 module.exports = {
   input: 'src/index.js',
   plugins: [
+    // https://github.com/rollup/rollup-plugin-node-resolve
     resolve({
-      jsnext: true,
-      main: true,
+      mainFields: ['module', 'jsnext', 'main'],
+      // jsnext: true,
+      // main: true,
       browser: true,
     }),
     commonjs({
@@ -37,8 +39,11 @@ module.exports = {
     //   exclude: 'node_modules/**'
     // }),
     // 结合 buble 比 babel 更快
+    // https://github.com/rollup/rollup-plugin-buble
+    // https://buble.surge.sh/guide/#using-the-javascript-api
     buble({
-      exclude: 'node_modules/**'
+      exclude: 'node_modules/**',
+      objectAssign: 'Object.assign'
     }),
     replace({
       exclude: 'node_modules/**',
@@ -51,26 +56,31 @@ module.exports = {
       banner,
       name,
       file: 'index.js',
+      exports: 'named',
       format: 'cjs'
     }, {
       banner,
       name,
       file: filename + '.amd.js',
+      exports: 'named',
       format: 'amd'
     }, {
       banner,
       name,
       file: filename + '.es.js',
+      exports: 'named',
       format: 'es'
     }, {
       banner,
       name,
       file: filename + '.iife.js',
+      exports: 'named',
       format: 'iife'
     }, {
       banner,
       name,
       file: filename + '.umd.js',
+      exports: 'named',
       format: 'umd'
     }
   ]

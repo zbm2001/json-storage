@@ -1,9 +1,9 @@
 /*
- * @name: json-storage
- * @version: 0.1.0
+ * @name: @zbm1/json-storage
+ * @version: 0.1.2
  * @description: localStorage and sessionStorage of json data
  * @author: zbm2001@aliyun.com
- * @license: Apache 2.0
+ * @license: Apache-2.0
  */
 
 'use strict';
@@ -214,10 +214,10 @@ var sessionStorage$1 = {
   $clear: $clear
 };
 
-var index = {
-  localStorage: localStorage$1,
-  sessionStorage: sessionStorage$1
-};
+var index = Object.assign({}, {localStorage: localStorage$1,
+  sessionStorage: sessionStorage$1},
+  localStorage$1,
+  sessionStorage$1);
 
 exports.$clear = $clear;
 exports.$getItem = $getItem;
@@ -230,7 +230,9 @@ exports.clear = clear;
 exports.default = index;
 exports.getItem = getItem;
 exports.getItems = getItems;
+exports.localStorage = localStorage$1;
 exports.removeItem = removeItem;
 exports.removeItems = removeItems;
+exports.sessionStorage = sessionStorage$1;
 exports.setItem = setItem;
 exports.setItems = setItems;
